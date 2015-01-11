@@ -80,23 +80,88 @@ public class Rubiks {
 			int axe1= (p+2)%6 ;
 			int axe2= (p+4)%6 ;
 			
+			if(p==0){
+				
+				
+				matrice[i%2+1][1][1].permuteColor(2,4,3);
+				matrice[i%2+1][2][1].permuteColor(4,3,5);
+				matrice[i%2+1][2][2].permuteColor(3,5,2);
+				matrice[i%2+1][1][2].permuteColor(5,2,4);
+				Piece aux= matrice[i%2+1][1][1];
+				
+				matrice[i%2+1][1][1]=matrice[i%2+1][1][2];
+				matrice[i%2+1][1][2]=matrice[i%2+1][2][2];
+				matrice[i%2+1][2][2]=matrice[i%2+1][2][1];
+				matrice[i%2+1][2][1]=aux;
+				
+				
+				
+				matrice[i%2+1][1][0].permuteColor(2,4);
+				matrice[i%2+1][0][1].permuteColor(4,3);
+				matrice[i%2+1][2][0].permuteColor(3,5);
+				matrice[i%2+1][0][2].permuteColor(5,2);
+				aux=matrice[i%2+1][1][0];
+				matrice[i%2+1][1][0]=matrice[i%2+1][0][2];
+				matrice[i%2+1][0][2]=matrice[i%2+1][2][0];
+				matrice[i%2+1][2][0]=matrice[i%2+1][0][1];
+				matrice[i%2+1][0][1]=aux;
+				
+				
+			}else if(p==2){
+				
+				
+				matrice[1][i%2+1][1].permuteColor(0,4,1);
+				matrice[2][i%2+1][1].permuteColor(4,1,5);
+				matrice[1][i%2+1][2].permuteColor(5,0,4);
+				matrice[2][i%2+1][2].permuteColor(1,5,0);
+				Piece aux= matrice[1][i%2+1][1];
+				
+				matrice[1][i%2+1][1]=matrice[1][i%2+1][2];
+				matrice[1][i%2+1][2]=matrice[2][i%2+1][2];
+				matrice[2][i%2+1][2]=matrice[2][i%2+1][1];
+				matrice[2][i%2+1][1]=aux;
+				
+				
+				
+				matrice[1][i%2+1][0].permuteColor(0,4);
+				matrice[i%2+1][i%2+1][1].permuteColor(4,3);
+				matrice[i%2+1][i%2+1][0].permuteColor(3,5);
+				matrice[i%2+1][i%2+1][2].permuteColor(5,2);
+				aux=matrice[1][i%2+1][0];
+				matrice[1][i%2+1][0]=matrice[0][i%2+1][2];
+				matrice[0][i%2+1][2]=matrice[2][i%2+1][0];
+				matrice[2][i%2+1][0]=matrice[0][i%2+1][1];
+				matrice[0][i%2+1][1]=aux;
+				
+			}else{
+				
+				
+				matrice[i%2+1][i%2+1][i%2+1].permuteColor(2,4,3);
+				matrice[i%2+1][2][i%2+1].permuteColor(4,3,5);
+				matrice[i%2+1][2][i%2+1].permuteColor(3,5,2);
+				matrice[i%2+1][1][i%2+1].permuteColor(5,2,4);
+				Piece aux= matrice[i%2+1][1][i%2+1];
+				
+				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][1][i%2+1];
+				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][2][i%2+1];
+				matrice[i%2+1][2][i%2+1]=matrice[i%2+1][2][i%2+1];
+				matrice[i%2+1][2][i%2+1]=aux;
+				
+				
+				
+				matrice[i%2+1][1][i%2+1].permuteColor(2,4);
+				matrice[i%2+1][0][i%2+1].permuteColor(4,3);
+				matrice[i%2+1][2][i%2+1].permuteColor(3,5);
+				matrice[i%2+1][0][i%2+1].permuteColor(5,2);
+				aux=matrice[i%2+1][1][i%2+1];
+				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][0][i%2+1];
+				matrice[i%2+1][0][i%2+1]=matrice[i%2+1][2][i%2+1];
+				matrice[i%2+1][2][i%2+1]=matrice[i%2+1][0][i%2+1];
+				matrice[i%2+1][0][i%2+1]=aux;
+				
+			}
 			
 			
-			
-			
-			
-//			for(int k=0; k<2 ;++k ){
-//				for(int l=0; l<2; ++l){
-//					for(int m=0; m<2; ++m){
-//						if(matrice[k][l][m].getColor(i) != null){
-//							Piece piece=matrice[k][l][m];
-//							piece.permuteColor(axe1,axe2);
-//							piece.permuteColor(axe2,axe1 + 1);
-//							piece.permuteColor(axe1 +1 , axe2 + 1);
-//						}
-//					}
-//				}
-//			}
 		}else if(degree==2){
 			turnFace(i,1);
 			turnFace(i,1);

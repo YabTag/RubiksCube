@@ -62,6 +62,12 @@ public class Piece {
 		Orientation[i]=Orientation[j];
 		Orientation[j]=aux;
 	}
+	public void permuteColor(int i, int j, int k){
+		int aux=Orientation[i];
+		Orientation[i]=Orientation[j];
+		Orientation[j]=Orientation[k];
+		Orientation[k]=aux;
+	}
 	
 	
 }
