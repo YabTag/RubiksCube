@@ -5,7 +5,7 @@ package rubikscube;
 
 public class Rubiks {
 	
-	private Piece[][][] matrice = new Piece[3][3][3];
+	public Piece[][][] matrice = new Piece[3][3][3];
 	
 	public void setRubiks(){
 		//Interieur*1
@@ -47,9 +47,9 @@ public class Rubiks {
 	}
 	
 	
-	public Piece[][][] getRubiks(){
-		return matrice;
-	}
+//	public Piece[][][] getRubiks(){
+//		return matrice;
+//	}
 	
 	public Piece[][] getFace(int i){
 		int p= i-i%2;
@@ -77,8 +77,8 @@ public class Rubiks {
 			
 			int p = i-i%2; // prendre le nombre pair le plus proche de i inferieurement.
 			//définir les axes pour les quels la couleur doit permutter
-			int axe1= (p+2)%6 ;
-			int axe2= (p+4)%6 ;
+//			int axe1= (p+2)%6 ;
+//			int axe2= (p+4)%6 ;
 			
 			if(p==0){
 				
@@ -87,7 +87,7 @@ public class Rubiks {
 				matrice[i%2+1][2][1].permuteColor(4,3,5);
 				matrice[i%2+1][2][2].permuteColor(3,5,2);
 				matrice[i%2+1][1][2].permuteColor(5,2,4);
-				Piece aux= matrice[i%2+1][1][1];
+				Piece aux=new Piece(matrice[i%2+1][1][1]);
 				
 				matrice[i%2+1][1][1]=matrice[i%2+1][1][2];
 				matrice[i%2+1][1][2]=matrice[i%2+1][2][2];
@@ -100,11 +100,11 @@ public class Rubiks {
 				matrice[i%2+1][0][1].permuteColor(4,3);
 				matrice[i%2+1][2][0].permuteColor(3,5);
 				matrice[i%2+1][0][2].permuteColor(5,2);
-				aux=matrice[i%2+1][1][0];
-				matrice[i%2+1][1][0]=matrice[i%2+1][0][2];
-				matrice[i%2+1][0][2]=matrice[i%2+1][2][0];
-				matrice[i%2+1][2][0]=matrice[i%2+1][0][1];
-				matrice[i%2+1][0][1]=aux;
+				Piece aux2=new Piece(matrice[i%2+1][1][0]);
+				matrice[i%2+1][1][0].copier(matrice[i%2+1][0][2]);
+				matrice[i%2+1][0][2].copier(matrice[i%2+1][2][0]);
+				matrice[i%2+1][2][0].copier(matrice[i%2+1][0][1]);
+				matrice[i%2+1][0][1].copier(aux2);
 				
 				
 			}else if(p==2){
@@ -114,50 +114,50 @@ public class Rubiks {
 				matrice[2][i%2+1][1].permuteColor(4,1,5);
 				matrice[1][i%2+1][2].permuteColor(5,0,4);
 				matrice[2][i%2+1][2].permuteColor(1,5,0);
-				Piece aux= matrice[1][i%2+1][1];
+				Piece aux=new Piece( matrice[1][i%2+1][1]);
 				
-				matrice[1][i%2+1][1]=matrice[1][i%2+1][2];
-				matrice[1][i%2+1][2]=matrice[2][i%2+1][2];
-				matrice[2][i%2+1][2]=matrice[2][i%2+1][1];
-				matrice[2][i%2+1][1]=aux;
+				matrice[1][i%2+1][1].copier(matrice[1][i%2+1][2]);
+				matrice[1][i%2+1][2].copier(matrice[2][i%2+1][2]);
+				matrice[2][i%2+1][2].copier(matrice[2][i%2+1][1]);
+				matrice[2][i%2+1][1].copier(aux);
 				
 				
 				
 				matrice[1][i%2+1][0].permuteColor(0,4);
-				matrice[i%2+1][i%2+1][1].permuteColor(4,3);
-				matrice[i%2+1][i%2+1][0].permuteColor(3,5);
-				matrice[i%2+1][i%2+1][2].permuteColor(5,2);
-				aux=matrice[1][i%2+1][0];
-				matrice[1][i%2+1][0]=matrice[0][i%2+1][2];
-				matrice[0][i%2+1][2]=matrice[2][i%2+1][0];
-				matrice[2][i%2+1][0]=matrice[0][i%2+1][1];
-				matrice[0][i%2+1][1]=aux;
+				matrice[0][i%2+1][1].permuteColor(4,1);
+				matrice[2][i%2+1][0].permuteColor(1,5);
+				matrice[0][i%2+1][2].permuteColor(5,0);
+				Piece aux2=new Piece(matrice[1][i%2+1][0]);
+				matrice[1][i%2+1][0].copier(matrice[0][i%2+1][2]);
+				matrice[0][i%2+1][2].copier(matrice[2][i%2+1][0]);
+				matrice[2][i%2+1][0].copier(matrice[0][i%2+1][1]);
+				matrice[0][i%2+1][1].copier(aux2);
 				
 			}else{
 				
 				
-				matrice[i%2+1][i%2+1][i%2+1].permuteColor(2,4,3);
-				matrice[i%2+1][2][i%2+1].permuteColor(4,3,5);
-				matrice[i%2+1][2][i%2+1].permuteColor(3,5,2);
-				matrice[i%2+1][1][i%2+1].permuteColor(5,2,4);
-				Piece aux= matrice[i%2+1][1][i%2+1];
+				matrice[1][1][i%2+1].permuteColor(0,2,1);
+				matrice[2][1][i%2+1].permuteColor(2,1,3);
+				matrice[2][2][i%2+1].permuteColor(1,3,0);
+				matrice[1][2][i%2+1].permuteColor(3,0,2);
+				Piece aux=new Piece( matrice[1][1][i%2+1]);
 				
-				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][1][i%2+1];
-				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][2][i%2+1];
-				matrice[i%2+1][2][i%2+1]=matrice[i%2+1][2][i%2+1];
-				matrice[i%2+1][2][i%2+1]=aux;
+				matrice[1][1][i%2+1].copier(matrice[1][2][i%2+1]);
+				matrice[1][2][i%2+1].copier(matrice[2][2][i%2+1]);
+				matrice[2][2][i%2+1].copier(matrice[2][1][i%2+1]);
+				matrice[2][1][i%2+1].copier(aux);
 				
 				
 				
-				matrice[i%2+1][1][i%2+1].permuteColor(2,4);
-				matrice[i%2+1][0][i%2+1].permuteColor(4,3);
-				matrice[i%2+1][2][i%2+1].permuteColor(3,5);
-				matrice[i%2+1][0][i%2+1].permuteColor(5,2);
-				aux=matrice[i%2+1][1][i%2+1];
-				matrice[i%2+1][1][i%2+1]=matrice[i%2+1][0][i%2+1];
-				matrice[i%2+1][0][i%2+1]=matrice[i%2+1][2][i%2+1];
-				matrice[i%2+1][2][i%2+1]=matrice[i%2+1][0][i%2+1];
-				matrice[i%2+1][0][i%2+1]=aux;
+				matrice[0][1][i%2+1].permuteColor(2,1);
+				matrice[2][0][i%2+1].permuteColor(1,3);
+				matrice[0][2][i%2+1].permuteColor(3,0);
+				matrice[1][0][i%2+1].permuteColor(0,2);
+				Piece aux2=new Piece( matrice[0][1][i%2+1]);
+				matrice[0][1][i%2+1].copier(matrice[1][0][i%2+1]);
+				matrice[1][0][i%2+1].copier(matrice[0][2][i%2+1]);
+				matrice[0][2][i%2+1].copier(matrice[2][0][i%2+1]);
+				matrice[2][0][i%2+1].copier(aux2);
 				
 			}
 			
@@ -172,5 +172,28 @@ public class Rubiks {
 		
 		
 	}
+	//vérification de la similitude de deux rubik's cube
+	
+	public boolean equals(Object rubiks){
+		if(rubiks.getClass() !=getClass()){
+			return false;
+		}else{
+			Rubiks r = (Rubiks) rubiks;
+			for(int k=0; k<2 ;++k ){
+				for(int l=0; l<2; ++l){
+					for(int m=0; m<2; ++m){
+						if(! matrice[k][l][m].equals(r.matrice[k][l][m])){
+							return false;
+						}
+					}
+				}
+			}
+			
+		}
+		return true;
+		
+	}
+	
+	
 	
 }

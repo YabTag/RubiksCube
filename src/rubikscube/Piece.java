@@ -20,7 +20,7 @@ public class Piece {
 //	private int Back;
 	
 	//tableau à 6 entrées représentant les orientation d'une piece de RubiksCube {Up,Down,Right,Left,Back,Front}
-	private int[] Orientation = new int[6];
+	public int[] Orientation = new int[6];
 	
 	public Piece(int Up, int Down, int Right, int Left, int Back, int Front){
 		Orientation[0]=Up;
@@ -31,7 +31,16 @@ public class Piece {
 		Orientation[5]=Front;
 		
 	}
+	//Constructeur de copie
+	public Piece(Piece piece){
+		for(int i=0;i<6;++i){
+			Orientation[i]=piece.Orientation[i];
+		}
+	}
 	
+	
+	
+	//redefinition de la méthode equals pour la classe Piece
 	public boolean equals(Object piece){
 		if(piece==null){
 			return false;
@@ -40,11 +49,16 @@ public class Piece {
 		}else{
 			Piece p=(Piece) piece;
 			for(int i=0; i<6; ++i){
-				if( (Orientation[i] ==-1 && !p.getColor(i).equals(null) ) || !COULEURS[Orientation[i]].equals(p.getColor(i)) ) {
+				if( Orientation[i] != p.Orientation[i] ) {
 					return false;
 				}
 			}
 			return true;
+		}
+	}
+	public void copier(Piece piece){
+		for(int i=0;i<6;++i){
+			Orientation[i]=piece.Orientation[i];
 		}
 	}
 	

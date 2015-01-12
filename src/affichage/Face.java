@@ -14,7 +14,7 @@ public class Face extends JFrame{
 	
 	public Face(){
 		this.setTitle("GridBagLayout");
-	    this.setSize(300, 300);
+	    this.setSize(400, 400);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 
@@ -41,8 +41,8 @@ public class Face extends JFrame{
 			
 	    //Le conteneur principal
 	    JPanel content = new JPanel();
-	    content.setPreferredSize(new Dimension(200, 200));
-	    content.setBackground(Color.black);
+	    content.setPreferredSize(new Dimension(300, 300));
+	    content.setBackground(Color.gray);
 	    //On définit le layout manager
 	    content.setLayout(new GridBagLayout());
 			
