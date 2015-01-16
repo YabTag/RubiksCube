@@ -13,14 +13,18 @@ public class Solution {
 		
 		
 		Rubiks rc = new Rubiks();
-		rc.turnFace(0, 1);
-		RubiksGUI graphe=new RubiksGUI( rc);
 		
-		rc.turnFace(1, 1);
+		rc.turnFace(5, 1);
+
+		Rubiks rc2= new Rubiks();
+
+//		RubiksGUI graphe=new RubiksGUI( rc);
+		
+		//rc.turnFace(1, 1);
 //		rc.turnFace(5, 1);
 //		rc.turnFace(0, 1);
 //		rc.turnFace(4, 1);
-		graphe=new RubiksGUI( rc);
+//		graphe=new RubiksGUI( rc);
 //		Rubiks rubiks=new Rubiks();
 //		rubiks.turnFace(1,2);
 //		Rubiks rubiks2=new Rubiks();

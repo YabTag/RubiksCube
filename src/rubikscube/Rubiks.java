@@ -47,9 +47,9 @@ public class Rubiks {
 	}
 	
 	
-//	public Piece[][][] getRubiks(){
-//		return matrice;
-//	}
+	public Piece[][][] getRubiks(){
+		return matrice;
+	}
 	
 	public Piece[][] getFace(int i){
 		int p= i-i%2;
@@ -179,18 +179,19 @@ public class Rubiks {
 			return false;
 		}else{
 			Rubiks r = (Rubiks) rubiks;
-			for(int k=0; k<2 ;++k ){
-				for(int l=0; l<2; ++l){
-					for(int m=0; m<2; ++m){
+			for(int k=0; k<3 ;++k ){
+				for(int l=0; l<3; ++l){
+					for(int m=0; m<3; ++m){
 						if(! matrice[k][l][m].equals(r.matrice[k][l][m])){
 							return false;
 						}
 					}
 				}
 			}
-			
+			return true;
+		
 		}
-		return true;
+		
 		
 	}
 	

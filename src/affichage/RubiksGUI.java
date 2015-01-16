@@ -94,7 +94,7 @@ class drawRC extends JPanel{
 		drawSqr(g, cubeX + 24, cubeY + 36, rc.matrice[1][2][1].getColor(3));
 		drawSqr(g, cubeX, cubeY + 48, rc.matrice[2][2][0].getColor(3));
 		drawSqr(g, cubeX + 12, cubeY + 48, rc.matrice[0][2][0].getColor(3));
-		drawSqr(g, cubeX + 24, cubeY + 48, rc.matrice[1][2][1].getColor(3));
+		drawSqr(g, cubeX + 24, cubeY + 48, rc.matrice[1][2][0].getColor(3));
 		drawSqr(g, cubeX, cubeY + 60, rc.matrice[2][2][2].getColor(3));
 		drawSqr(g, cubeX + 12, cubeY + 60, rc.matrice[0][2][2].getColor(3));
 		drawSqr(g, cubeX + 24, cubeY + 60, rc.matrice[1][2][2].getColor(3));

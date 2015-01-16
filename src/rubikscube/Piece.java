@@ -78,10 +78,20 @@ public class Piece {
 	}
 	public void permuteColor(int i, int j, int k){
 		int aux=Orientation[i];
-		Orientation[i]=Orientation[j];
-		Orientation[j]=Orientation[k];
-		Orientation[k]=aux;
+		Orientation[i]=Orientation[k];
+		Orientation[k]=Orientation[j];
+		Orientation[j]=aux;
 	}
 	
+	
+	public String toString(){
+		String x="";
+		for(int i=0;i<6;++i){
+			
+			x+="couleur "+ i +"  "+getColor(i)+"  ";
+		}
+		
+		return x;
+	}
 	
 }
