@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,13 +32,13 @@ public class RubiksGUI extends JFrame{
 		super("RubiksGUI");
 		
 		this.rc = rc;
-		winX = 600;
-		originX = winX / 2;
-		winY = 600;
-		originY = winY / 2;
+		winX = 700;
+		originX = winX;
+		winY = winX*5/6;
+		originY = winY;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(winX, winY);
-		setLocation(0, 0);
+		setLocation(100, 100);
 		Container container = getContentPane();
 		
 		container.setBackground(Color.BLACK);
@@ -68,87 +69,93 @@ class drawRC extends JPanel{
 
 	public void paintComponent(Graphics _g) {
 		Graphics2D g = (Graphics2D) _g;
-		int x = getWidth() / 2;
-		int y = 15;
-		g.drawString("Affichage du Rubik's Cube complet", x, y);
-
-		int cubeX = 100;
-		int cubeY = 100;
+		int x = getWidth();
+		int y = getHeight();
+		Font police=new Font("Courier",Font.BOLD,20);
+		g.setFont(police);
+		g.drawString("Affichage du Rubik's Cube complet", x/6, 30);
+		int dx=x/18+2;
+		int cubeX = x/6;
+		int cubeY = y/5;
 		
 		
 		//Face Blanche Back
-		drawSqr(g, cubeX + 36, cubeY, rc.matrice[2][2][1].getColor(4));
-		drawSqr(g, cubeX + 48, cubeY, rc.matrice[2][0][1].getColor(4));
-		drawSqr(g, cubeX + 60, cubeY, rc.matrice[2][1][1].getColor(4));
-		drawSqr(g, cubeX + 36, cubeY + 12, rc.matrice[0][2][1].getColor(4));
-		drawSqr(g, cubeX + 48, cubeY + 12, rc.matrice[0][0][1].getColor(4));
-		drawSqr(g, cubeX + 60, cubeY + 12, rc.matrice[0][1][1].getColor(4));
-		drawSqr(g, cubeX + 36, cubeY + 24, rc.matrice[1][2][1].getColor(4));
-		drawSqr(g, cubeX + 48, cubeY + 24, rc.matrice[1][0][1].getColor(4));
-		drawSqr(g, cubeX + 60, cubeY + 24, rc.matrice[1][1][1].getColor(4));
+		drawSqr(g, cubeX + 3*dx, cubeY + 0*dx, rc.matrice[2][2][1].getColor(4));
+		drawSqr(g, cubeX + 4*dx, cubeY + 0*dx, rc.matrice[2][0][1].getColor(4));
+		drawSqr(g, cubeX + 5*dx, cubeY + 0*dx, rc.matrice[2][1][1].getColor(4));
+		drawSqr(g, cubeX + 3*dx, cubeY + 1*dx, rc.matrice[0][2][1].getColor(4));
+		drawSqr(g, cubeX + 4*dx, cubeY + 1*dx, rc.matrice[0][0][1].getColor(4));
+		drawSqr(g, cubeX + 5*dx, cubeY + 1*dx, rc.matrice[0][1][1].getColor(4));
+		drawSqr(g, cubeX + 3*dx, cubeY + 2*dx, rc.matrice[1][2][1].getColor(4));
+		drawSqr(g, cubeX + 4*dx, cubeY + 2*dx, rc.matrice[1][0][1].getColor(4));
+		drawSqr(g, cubeX + 5*dx, cubeY + 2*dx, rc.matrice[1][1][1].getColor(4));
 		
 		
 		//Face Verte Left
-		drawSqr(g, cubeX, cubeY + 36, rc.matrice[2][2][1].getColor(3));
-		drawSqr(g, cubeX + 12, cubeY + 36, rc.matrice[0][2][1].getColor(3));
-		drawSqr(g, cubeX + 24, cubeY + 36, rc.matrice[1][2][1].getColor(3));
-		drawSqr(g, cubeX, cubeY + 48, rc.matrice[2][2][0].getColor(3));
-		drawSqr(g, cubeX + 12, cubeY + 48, rc.matrice[0][2][0].getColor(3));
-		drawSqr(g, cubeX + 24, cubeY + 48, rc.matrice[1][2][0].getColor(3));
-		drawSqr(g, cubeX, cubeY + 60, rc.matrice[2][2][2].getColor(3));
-		drawSqr(g, cubeX + 12, cubeY + 60, rc.matrice[0][2][2].getColor(3));
-		drawSqr(g, cubeX + 24, cubeY + 60, rc.matrice[1][2][2].getColor(3));
+		drawSqr(g, cubeX + 0*dx, cubeY + 3*dx, rc.matrice[2][2][1].getColor(3));
+		drawSqr(g, cubeX + 1*dx, cubeY + 3*dx, rc.matrice[0][2][1].getColor(3));
+		drawSqr(g, cubeX + 2*dx, cubeY + 3*dx, rc.matrice[1][2][1].getColor(3));
+		drawSqr(g, cubeX + 0*dx, cubeY + 4*dx, rc.matrice[2][2][0].getColor(3));
+		drawSqr(g, cubeX + 1*dx, cubeY + 4*dx, rc.matrice[0][2][0].getColor(3));
+		drawSqr(g, cubeX + 2*dx, cubeY + 4*dx, rc.matrice[1][2][0].getColor(3));
+		drawSqr(g, cubeX + 0*dx, cubeY + 5*dx, rc.matrice[2][2][2].getColor(3));
+		drawSqr(g, cubeX + 1*dx, cubeY + 5*dx, rc.matrice[0][2][2].getColor(3));
+		drawSqr(g, cubeX + 2*dx, cubeY + 5*dx, rc.matrice[1][2][2].getColor(3));
 		
 		
 		//Face Rouge Up
-		drawSqr(g, cubeX + 36, cubeY + 36, rc.matrice[1][2][1].getColor(0));
-		drawSqr(g, cubeX + 48, cubeY + 36, rc.matrice[1][0][1].getColor(0));
-		drawSqr(g, cubeX + 60, cubeY + 36, rc.matrice[1][1][1].getColor(0));
-		drawSqr(g, cubeX + 36, cubeY + 48, rc.matrice[1][2][0].getColor(0));
-		drawSqr(g, cubeX + 48, cubeY + 48, rc.matrice[1][0][0].getColor(0));
-		drawSqr(g, cubeX + 60, cubeY + 48, rc.matrice[1][1][0].getColor(0));
-		drawSqr(g, cubeX + 36, cubeY + 60, rc.matrice[1][2][2].getColor(0));
-		drawSqr(g, cubeX + 48, cubeY + 60, rc.matrice[1][0][2].getColor(0));
-		drawSqr(g, cubeX + 60, cubeY + 60, rc.matrice[1][1][2].getColor(0));
+		drawSqr(g, cubeX + 3*dx, cubeY + 3*dx, rc.matrice[1][2][1].getColor(0));
+		drawSqr(g, cubeX + 4*dx, cubeY + 3*dx, rc.matrice[1][0][1].getColor(0));
+		drawSqr(g, cubeX + 5*dx, cubeY + 3*dx, rc.matrice[1][1][1].getColor(0));
+		drawSqr(g, cubeX + 3*dx, cubeY + 4*dx, rc.matrice[1][2][0].getColor(0));
+		drawSqr(g, cubeX + 4*dx, cubeY + 4*dx, rc.matrice[1][0][0].getColor(0));
+		drawSqr(g, cubeX + 5*dx, cubeY + 4*dx, rc.matrice[1][1][0].getColor(0));
+		drawSqr(g, cubeX + 3*dx, cubeY + 5*dx, rc.matrice[1][2][2].getColor(0));
+		drawSqr(g, cubeX + 4*dx, cubeY + 5*dx, rc.matrice[1][0][2].getColor(0));
+		drawSqr(g, cubeX + 5*dx, cubeY + 5*dx, rc.matrice[1][1][2].getColor(0));
 
 		
 		//Face Bleue Right
-		drawSqr(g, cubeX + 72, cubeY + 36, rc.matrice[1][1][1].getColor(2));
-		drawSqr(g, cubeX + 84, cubeY + 36, rc.matrice[0][1][1].getColor(2));
-		drawSqr(g, cubeX + 96, cubeY + 36, rc.matrice[2][1][1].getColor(2));
-		drawSqr(g, cubeX + 72, cubeY + 48, rc.matrice[1][1][0].getColor(2));
-		drawSqr(g, cubeX + 84, cubeY + 48, rc.matrice[0][1][0].getColor(2));
-		drawSqr(g, cubeX + 96, cubeY + 48, rc.matrice[2][1][0].getColor(2));
-		drawSqr(g, cubeX + 72, cubeY + 60, rc.matrice[1][1][2].getColor(2));
-		drawSqr(g, cubeX + 84, cubeY + 60, rc.matrice[0][1][2].getColor(2));
-		drawSqr(g, cubeX + 96, cubeY + 60, rc.matrice[2][1][2].getColor(2));
-
-		drawSqr(g, cubeX + 108, cubeY + 36, rc.matrice[2][1][1].getColor(1));
-		drawSqr(g, cubeX + 120, cubeY + 36, rc.matrice[2][0][1].getColor(1));
-		drawSqr(g, cubeX + 132, cubeY + 36, rc.matrice[2][2][1].getColor(1));
-		drawSqr(g, cubeX + 108, cubeY + 48, rc.matrice[2][1][0].getColor(1));
-		drawSqr(g, cubeX + 120, cubeY + 48, rc.matrice[2][0][0].getColor(1));
-		drawSqr(g, cubeX + 132, cubeY + 48, rc.matrice[2][2][0].getColor(1));
-		drawSqr(g, cubeX + 108, cubeY + 60, rc.matrice[2][1][2].getColor(1));
-		drawSqr(g, cubeX + 120, cubeY + 60, rc.matrice[2][0][2].getColor(1));
-		drawSqr(g, cubeX + 132, cubeY + 60, rc.matrice[2][2][2].getColor(1));
-
-		drawSqr(g, cubeX + 36, cubeY + 72, rc.matrice[1][2][2].getColor(5));
-		drawSqr(g, cubeX + 48, cubeY + 72, rc.matrice[1][0][2].getColor(5));
-		drawSqr(g, cubeX + 60, cubeY + 72, rc.matrice[1][1][2].getColor(5));
-		drawSqr(g, cubeX + 36, cubeY + 84, rc.matrice[0][2][2].getColor(5));
-		drawSqr(g, cubeX + 48, cubeY + 84, rc.matrice[0][0][2].getColor(5));
-		drawSqr(g, cubeX + 60, cubeY + 84, rc.matrice[0][1][2].getColor(5));
-		drawSqr(g, cubeX + 36, cubeY + 96, rc.matrice[2][2][2].getColor(5));
-		drawSqr(g, cubeX + 48, cubeY + 96, rc.matrice[2][0][2].getColor(5));
-		drawSqr(g, cubeX + 60, cubeY + 96, rc.matrice[2][1][2].getColor(5));
+		drawSqr(g, cubeX + 6*dx, cubeY + 3*dx, rc.matrice[1][1][1].getColor(2));
+		drawSqr(g, cubeX + 7*dx, cubeY + 3*dx, rc.matrice[0][1][1].getColor(2));
+		drawSqr(g, cubeX + 8*dx, cubeY + 3*dx, rc.matrice[2][1][1].getColor(2));
+		drawSqr(g, cubeX + 6*dx, cubeY + 4*dx, rc.matrice[1][1][0].getColor(2));
+		drawSqr(g, cubeX + 7*dx, cubeY + 4*dx, rc.matrice[0][1][0].getColor(2));
+		drawSqr(g, cubeX + 8*dx, cubeY + 4*dx, rc.matrice[2][1][0].getColor(2));
+		drawSqr(g, cubeX + 6*dx, cubeY + 5*dx, rc.matrice[1][1][2].getColor(2));
+		drawSqr(g, cubeX + 7*dx, cubeY + 5*dx, rc.matrice[0][1][2].getColor(2));
+		drawSqr(g, cubeX + 8*dx, cubeY + 5*dx, rc.matrice[2][1][2].getColor(2));
+		
+		
+		//Face Orange Down
+		drawSqr(g, cubeX + 9*dx, cubeY + 3*dx, rc.matrice[2][1][1].getColor(1));
+		drawSqr(g, cubeX + 10*dx, cubeY + 3*dx, rc.matrice[2][0][1].getColor(1));
+		drawSqr(g, cubeX + 11*dx, cubeY + 3*dx, rc.matrice[2][2][1].getColor(1));
+		drawSqr(g, cubeX + 9*dx, cubeY + 4*dx, rc.matrice[2][1][0].getColor(1));
+		drawSqr(g, cubeX + 10*dx, cubeY + 4*dx, rc.matrice[2][0][0].getColor(1));
+		drawSqr(g, cubeX + 11*dx, cubeY + 4*dx, rc.matrice[2][2][0].getColor(1));
+		drawSqr(g, cubeX + 9*dx, cubeY + 5*dx, rc.matrice[2][1][2].getColor(1));
+		drawSqr(g, cubeX + 10*dx, cubeY + 5*dx, rc.matrice[2][0][2].getColor(1));
+		drawSqr(g, cubeX + 11*dx, cubeY + 5*dx, rc.matrice[2][2][2].getColor(1));
+		
+		
+		//Face Jaune Front
+		drawSqr(g, cubeX + 3*dx, cubeY + 6*dx, rc.matrice[1][2][2].getColor(5));
+		drawSqr(g, cubeX + 4*dx, cubeY + 6*dx, rc.matrice[1][0][2].getColor(5));
+		drawSqr(g, cubeX + 5*dx, cubeY + 6*dx, rc.matrice[1][1][2].getColor(5));
+		drawSqr(g, cubeX + 3*dx, cubeY + 7*dx, rc.matrice[0][2][2].getColor(5));
+		drawSqr(g, cubeX + 4*dx, cubeY + 7*dx, rc.matrice[0][0][2].getColor(5));
+		drawSqr(g, cubeX + 5*dx, cubeY + 7*dx, rc.matrice[0][1][2].getColor(5));
+		drawSqr(g, cubeX + 3*dx, cubeY + 8*dx, rc.matrice[2][2][2].getColor(5));
+		drawSqr(g, cubeX + 4*dx, cubeY + 8*dx, rc.matrice[2][0][2].getColor(5));
+		drawSqr(g, cubeX + 5*dx, cubeY + 8*dx, rc.matrice[2][1][2].getColor(5));
 
 	}
 
 	public void drawSqr(Graphics2D g, int x, int y, Color couleur) {
 
 		g.setColor(couleur);
-		g.fillRect(x, y, 10, 10);
+		g.fillRect(x, y, getWidth()/18, getWidth()/18);
 
 	}
 
