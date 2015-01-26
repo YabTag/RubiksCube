@@ -3,6 +3,7 @@ package rubikscube;
 
 
 
+
 public class Rubiks {
 	
 	public Piece[][][] matrice = new Piece[3][3][3];
@@ -192,6 +193,18 @@ public class Rubiks {
 		
 		}
 		
+		
+	}
+	
+	public void copier(Rubiks rc) {
+		for (int k = 0; k <= 2; k++){
+			for (int i = 0; i <= 2; i ++){
+				for (int j = 0; j <= 2; j++){
+					
+					matrice[k][i][j].copier(rc.matrice[k][i][j]);
+				}
+			}
+		}
 		
 	}
 	

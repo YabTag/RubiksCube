@@ -31,6 +31,9 @@ public class Piece {
 		Orientation[5]=Front;
 		
 	}
+	
+	
+	
 	//Constructeur de copie
 	public Piece(Piece piece){
 		for(int i=0;i<6;++i){
@@ -56,6 +59,9 @@ public class Piece {
 			return true;
 		}
 	}
+	
+	
+	
 	public void copier(Piece piece){
 		for(int i=0;i<6;++i){
 			Orientation[i]=piece.Orientation[i];

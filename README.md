@@ -14,3 +14,7 @@ Author :                               ||
 
 Achari Berrada Youssef,
 Reda Boumahdi.
+
+Illustration of the Rubik's Cube : 
+
+Achari Berrada Siham.

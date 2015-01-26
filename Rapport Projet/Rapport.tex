@@ -113,7 +113,7 @@ Notre projet informatique formé par le code ainsi que par le présent rapport, 
 
 \subsection{Représentation du Rubik's Cube : }
 
-\includegraphics[scale=1]{RubiksCube.png}
+\includegraphics[scale=0.25]{RubiksCube2.jpg}
 
 Nous avons choisi de représenter notre cube sous la forme d'une matrice à trois dimensions. Tout d'abord, on suppose que notre cube est fixe, si bien que parler de haut du cube n'est pas ambigu, il s'agit de la face du haut. Ensuite, chaque élément de la matrice contient un objet du type « Piece », cet objet est un tableau à 6 éléments, dans l'ordre suivant « haut, bas, gauche, droite, derrière, en face » initialisé à -1. Nous représentons les couleurs comme étant des entiers de 0 à 5. Ainsi pour représenter une pièce donnée, on utilise le fait qu'elle partage une couleur avec différentes faces. Aussi, si on parle de la pièce qui partage une couleur avec la face gauche et la face haut, il n'y a pas d'ambiguïté, il n'y en a qu'une seule : les 2 autres sont des sommets, et aussi elles partagent nécessairement une troisième couleur avec une autre face. Pour se repérer entre les faces, il s'agit de remarquer qu'en réalité, le centre de chaque face est fixe, du coup la face est repérable par la couleur du centre de chaque face. Enfin, les pièces étant numérotées de façon bijective, nous savons toujours à quel moment quelle pièce représente le centre haut gauche de la face gauche par exemple.
 
@@ -167,6 +167,8 @@ Par conséquent, cette représentation permet à tout moment de repérer chaque 
 
 \subsection{Premières fonctions}
 
+\includegraphics[scale=0.25]{RubiksCube3.jpg}
+
 Avec notre représentation, remplir et afficher un texte revient à déterminer dans un premier temps la couleur du centre, pour savoir de quelle face il s'agit, ensuite de déterminer quelle couleur est partagée par quelle face. Cette opération se traduit par le parcours de chaque matrice, si on considére la forme développée du cube comme dans la figure 3 de l'énoncé, on suppose que l'on a comme entrée une liste de 6 matrices correspondants dans un ordre donné à celles que l'on voit. Dans ce cas, on parcourt chaque matrice, et on remplit les pièces comme on les voit, il faut en revanche remarquer qu'il faut revenir sur certaines pièces à remplir deux fois ou trois fois. 
 \\
 L'affiche en revanche est plus simple, il s'agit d'afficher chaque face, en commençant par gauche, jusqu'à la droit. Nous repérons la face gauche comme étant le troisième élément dans le tableau de la pièce, et ainsi de suite pour chaque pièce, dans l'ordre puisque nous savons où est chaque pièce grâce à sa numérotation dans la matrice 3 x 3 x 3.
@@ -181,15 +183,15 @@ Enfin, se pose la question de pouvoir permuter les différentes faces de notre R
 \section{Recherche d'une Solution Optimale :}
 
 \subsection{Un peu de combinatoire :}
-Le cube contient 8 sommets qui peuvent être permutés entre eux, et chaque sommet a 3 états possibles. Seulement, l'état du $8^{ième}$ sommet est déterminé par les 7 autres. Ainsi, il y a $8 ! * 3⁷$ configurations différentes pour les sommets.
+Le cube contient 8 sommets qui peuvent être permutés entre eux, et chaque sommet a 3 états possibles. Seulement, l'état du $8^{ième}$ sommet est déterminé par les 7 autres. Ainsi, il y a $8 ! * 3^{7}$ configurations différentes pour les sommets.
 
-De plus, le cube contient $12$ arrêtes, les arrêtes étant interchangeables, et ayant 2 états possibles cela donnerait un facteur $12 ! * 2¹²$. Or, encore une fois, l'état de la $12^{ième}$ arrête est déterminé par les 11 autres, et donc en réalité il existe seulement $12 ! * 2¹¹$ configurations différentes.
+De plus, le cube contient $12$ arrêtes, les arrêtes étant interchangeables, et ayant 2 états possibles cela donnerait un facteur $12 ! * 2^{12}$. Or, encore une fois, l'état de la $12^{ième}$ arrête est déterminé par les 11 autres, et donc en réalité il existe seulement $12 ! * 2^{11}$ configurations différentes.
 Enfin, lorsque tous les petites pièces sont bien positionnées, on ne peut permuter 2 pièces sans changer 2 autres pièces entre elles. Cette contrainte supplémentaire diminue le nombre de possibilités par 2.
 
-Finalement, le nombre de possibilité est en fait : $8 ! * 3⁷ * 12 ! * 2¹⁰ = 43252003274489856000.$
+Finalement, le nombre de possibilité est en fait : $8 ! * 3^{7} * 12 ! * 2^{10} = 43252003274489856000$.
 
 Nous remarquons qu'il y a une erreur dans l'énoncé sur ce fait, effectivement, si le résultat $43252003274489856000$ est correct, et cela a été retrouvé dans la documentation, le logiciel Scilab
-a permis de lever l'indétermination, des deux formules, c'est $8 ! * 3⁷ * 12 ! * 2¹⁰$ qui donne ce
+a permis de lever l'indétermination, des deux formules, c'est $8 ! * 3^{7} * 12 ! * 2^{10}$ qui donne ce
 résultat.
 
 
