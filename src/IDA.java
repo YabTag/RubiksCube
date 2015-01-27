@@ -18,7 +18,7 @@ public class IDA {
 		resultat = res;
 	}
 	public List_Rubiks ida(Rubiks rc, List_Rubiks l, int n) {
-		// n désigne la longueur de la liste
+		// n dÃ©signe la longueur de la liste
 		if (n < t ) {
 			int quitter = 1;
 			for(int k = 0; k <= 5; k++){

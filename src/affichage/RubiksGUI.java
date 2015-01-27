@@ -66,15 +66,26 @@ class drawRC extends JPanel{
 	public drawRC(Rubiks rc) {
 		this.rc=rc;
 	}
+	
+	public int optimaleTaille(){
+		int x= getWidth();
+		int y = getHeight();
+		if(4*x/6 >y){
+			return y/15;
+		}else{
+			return x/18;
+		}
+	}
 
 	public void paintComponent(Graphics _g) {
 		Graphics2D g = (Graphics2D) _g;
 		int x = getWidth();
 		int y = getHeight();
+		
 		Font police=new Font("Courier",Font.BOLD,20);
 		g.setFont(police);
 		g.drawString("Affichage du Rubik's Cube complet", x/6, 30);
-		int dx=x/18+2;
+		int dx=optimaleTaille()+2;
 		int cubeX = x/6;
 		int cubeY = y/5;
 		
@@ -155,7 +166,7 @@ class drawRC extends JPanel{
 	public void drawSqr(Graphics2D g, int x, int y, Color couleur) {
 
 		g.setColor(couleur);
-		g.fillRect(x, y, getWidth()/18, getWidth()/18);
+		g.fillRect(x, y, optimaleTaille(), optimaleTaille());
 
 	}
 
