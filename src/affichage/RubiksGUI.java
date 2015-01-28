@@ -3,6 +3,7 @@ package affichage;
 
 
 import rubikscube.*;
+import idaalgo.* ;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -11,12 +12,15 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.text.NumberFormat;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-
+import javax.swing.JTextField;
 
 
 public class RubiksGUI extends JFrame{
@@ -27,6 +31,8 @@ public class RubiksGUI extends JFrame{
 	private int originY;
 	 
 	private Rubiks rc;
+	
+	private List_Rubiks l;
 	
 	public RubiksGUI(Rubiks rc){
 		super("RubiksGUI");
@@ -44,7 +50,11 @@ public class RubiksGUI extends JFrame{
 		container.setBackground(Color.BLACK);
 		
 		drawRC draw = new drawRC(rc);
-		container.add(draw);
+		ButtonsRotation buttons = new ButtonsRotation(rc);
+		JSplitPane splitPaneRight = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, draw, buttons);
+		splitPaneRight.setDividerLocation(winX - 120);
+		container.add(splitPaneRight);
+		
 		validate();
 		setVisible(true);
 		boolean exit = false;
@@ -53,6 +63,35 @@ public class RubiksGUI extends JFrame{
 		}	
 		
 	}
+	public RubiksGUI(Rubiks rc, List_Rubiks l){
+		super("RubiksGUI");
+		
+		this.rc = rc;
+		
+		winX = 700;
+		originX = winX;
+		winY = winX*5/6;
+		originY = winY;
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(winX, winY);
+		setLocation(100, 100);
+		Container container = getContentPane();
+		
+		container.setBackground(Color.BLACK);
+		
+		drawRC draw = new drawRC(rc);
+		ButtonsIDA buttons = new ButtonsIDA(rc,l);
+		JSplitPane splitPaneRight = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, draw, buttons);
+		splitPaneRight.setDividerLocation(winX - 120);
+		container.add(splitPaneRight);
+		
+		validate();
+		setVisible(true);
+		boolean exit = false;
+		while (!exit) {
+			repaint();
+		}	
+	}
 	
 
 	
@@ -60,6 +99,203 @@ public class RubiksGUI extends JFrame{
 	
 }
 
+class ButtonsIDA extends JPanel implements ActionListener {
+	
+	private JFormattedTextField coup = new JFormattedTextField(NumberFormat.getIntegerInstance());
+	private JLabel label = new JLabel("coups");
+	private JButton mix;
+	private JButton reset;
+	
+	
+	List_Rubiks l;
+	Rubiks rc;
+	
+	public ButtonsIDA(Rubiks rc, List_Rubiks l){
+		this.rc=rc;
+		this.l=l;
+		this.setLayout(null);
+		
+		Font police = new Font("Arial", Font.BOLD, 14);
+		coup.setFont(police);
+		coup.setForeground(Color.BLUE);
+		
+		label.setBounds(5, 10, 40, 15);
+		coup.setBounds(50, 10, 40, 15);
+		
+		add(label);
+		add(coup);
+		
+		mix = new JButton("mix");
+		mix.setBounds(5, 35, 80, 15);
+		add(mix);
+		mix.addActionListener(this);
+		
+		reset = new JButton("reset");
+		reset.setBounds(5,60,80,15);
+		add(reset);
+		reset.addActionListener(this);
+	}
+	public void actionPerformed(ActionEvent evt){
+		
+		if(evt.getSource() == mix){
+			int i = Integer.parseInt(coup.getText());
+			rc.mix(i);
+		}
+		
+		if(evt.getSource() == reset) {
+			rc.setRubiks();
+		}
+		
+	}
+	
+}
+
+class ButtonsRotation extends JPanel implements ActionListener {
+	
+	
+	private JButton red;
+	private JButton orange;
+	private JButton blue;
+	private JButton green;
+	private JButton white;
+	private JButton yellow;
+	private JButton mix;
+	private JFormattedTextField coup = new JFormattedTextField(NumberFormat.getIntegerInstance());
+	private JLabel label = new JLabel("coups");
+	private JButton reset;
+	
+	private JButton ida;
+	private List_Rubiks l;
+	
+	private JButton next;
+	
+	
+	Rubiks rc;
+	
+	
+	public ButtonsRotation(Rubiks rc){
+		this.rc=rc;
+		this.setLayout(null);
+		red = new JButton("red");
+		red.setBounds(5,10,80,15);
+		add(red);
+		red.addActionListener(this);
+		
+		
+		orange = new JButton("orange");
+		orange.setBounds(5,35,80,15);
+		add(orange);
+		orange.addActionListener(this);
+		
+		
+		blue = new JButton("blue");
+		blue.setBounds(5,60,80,15);
+		add(blue);
+		blue.addActionListener(this);
+		
+		green = new JButton("green");
+		green.setBounds(5,85,80,15);
+		add(green);
+		green.addActionListener(this);
+		
+		white = new JButton("white");
+		white.setBounds(5,110,80,15);
+		add(white);
+		white.addActionListener(this);
+		
+		yellow = new JButton("yellow");
+		yellow.setBounds(5,135,80,15);
+		add(yellow);
+		yellow.addActionListener(this);
+		
+		Font police = new Font("Arial", Font.BOLD, 14);
+		coup.setFont(police);
+		coup.setForeground(Color.BLUE);
+		label.setBounds(5, 170, 40, 15);
+		coup.setBounds(50, 170, 40, 15);
+		
+		add(label);
+		add(coup);
+		
+		mix = new JButton("mix");
+		mix.setBounds(5, 200, 80, 15);
+		add(mix);
+		mix.addActionListener(this);
+		
+		
+		reset = new JButton("reset");
+		reset.setBounds(5,225,80,15);
+		add(reset);
+		reset.addActionListener(this);
+		
+		ida = new JButton("IDA");
+		ida.setBounds(5,250,80,20);
+		add(ida);
+		ida.addActionListener(this);
+		
+		next = new JButton("next");
+		next.setBounds(5,300,80,20);
+		add(next);
+		next.addActionListener(this);
+		
+	}
+	public void actionPerformed(ActionEvent evt){
+		if(evt.getSource() == red) {
+			rc.turnFace(0,1);
+		}
+		if(evt.getSource() == orange) {
+			rc.turnFace(1,1);
+		}
+		if(evt.getSource() == blue) {
+			rc.turnFace(2,1);
+		}
+		if(evt.getSource() == green) {
+			rc.turnFace(3,1);
+		}
+		if(evt.getSource() == white) {
+			rc.turnFace(4,1);
+		}
+		if(evt.getSource() == yellow) {
+			rc.turnFace(5,1);
+		}
+		
+		if(evt.getSource() == mix){
+			int i = Integer.parseInt(coup.getText());
+			rc.mix(i);
+		}
+		
+		if(evt.getSource() == reset) {
+			rc.setRubiks();
+		}
+		
+		
+		if(evt.getSource() == ida) {
+			
+			long startTime = System.nanoTime();
+			IDA f=new IDA(rc,1,new Rubiks(),new List_Rubiks(rc,null));
+			
+			List_Rubiks l1=f.idA(rc);
+			
+			long endTime = System.nanoTime();
+			l=l1.inverser(l1);
+			System.out.println("Time : "+ (endTime-startTime)/1000000+"ms");
+			System.out.println("Nombre de coups : "+ (l.taille()-1) );
+			
+			
+		}
+		if(evt.getSource() == next){
+			if(l!=null){
+				rc.copier(l.head);
+				l= l.tail;
+			}
+			
+		}
+		
+		
+	}
+	
+	
+}
 
 class drawRC extends JPanel{
 	public Rubiks rc ;

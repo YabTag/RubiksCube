@@ -1,17 +1,18 @@
+package idaalgo;
+
 import javax.swing.JFrame;
 
 import rubikscube.*;
 import affichage.*;
 
 
-
-public class IDA {
+public class IDAameliore {
 	Rubiks rc;
 	int t;
 	Rubiks rcOrdonne; // un rubiks cube ordonne pour faire nos comparaisons directement..
 	List_Rubiks resultat;
 	
-	public IDA (Rubiks r, int j, Rubiks r1, List_Rubiks res){
+	public IDAameliore (Rubiks r, int j, Rubiks r1, List_Rubiks res){
 		rc = r;
 		t = j;
 		rcOrdonne = r1;
@@ -34,7 +35,9 @@ public class IDA {
 					}
 					else {
 						if (!(l.is_there(l,rcAux))) {
-							ida(rcAux, l1, n+1);
+							MinCoup m = new MinCoup(rcAux);
+							int min = m.minCoupGlobal(m);
+							if ((n + min) <= t ) ida(rcAux, l1, n+1);
 					}
 						
 						
@@ -48,7 +51,18 @@ public class IDA {
 		
 		}
 		
+	
+	public List_Rubiks idA(Rubiks rc) {
+		while(!resultat.head.equals(rcOrdonne)){
+			t ++;
+			ida(rc, new List_Rubiks(rc, null), 0);
+		}
+		return resultat;
+	}
 		
 }
+
+
+		
 
 

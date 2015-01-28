@@ -1,6 +1,7 @@
 package rubikscube;
 
-
+import java.util.Random;
+import idaalgo.*;
 
 
 
@@ -206,6 +207,23 @@ public class Rubiks {
 			}
 		}
 		
+	}
+	
+	public void mix( int n) {
+		Random j = new Random();
+		
+		for (int k = 0; k <= n - 1; k++){
+			turnFace( j.nextInt(6), j.nextInt(3)+1 );
+		}
+		
+	}
+	
+	public void next(List_Rubiks l){
+		if(l.tail.head==null){
+			return;
+		}else{
+			copier(l.tail.head);
+		}
 	}
 	
 	
