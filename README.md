@@ -1,16 +1,16 @@
 # RubiksCube
 
-Rubik's Cube solver with Java.         ||
+Rubik's Cube solver with Java.        
 
-Head Teacher : Gilles Schaeffer        ||
+Head Teacher : Benjamin Doerr      
 
-Course : Ecole Polytechnique, Inf 421. ||
+Course : Ecole Polytechnique, Inf 421.
 
-Project : Rubik's Cube                 ||
+Project : Rubik's Cube                 
 
-Tutor : Frédéric Magniez               ||
+Tutor : Frédéric Magniez           
  
-Author :                               ||
+Author :                              
 
 Achari Berrada Youssef,
 Reda Boumahdi.
