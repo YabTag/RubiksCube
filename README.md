@@ -18,3 +18,6 @@ Reda Boumahdi.
 Illustration of the Rubik's Cube : 
 
 Achari Berrada Siham.
+
+![alt tag](https://github.com/YabTag/RubiksCube/blob/master/Rapport%20Projet/RubiksCube.png)
+
